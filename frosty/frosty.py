@@ -5,51 +5,49 @@ import sksparse
 import robsel
 
 def amd(A):
-    """
+    '''
     Parameters
     ----------
-    A: ndarray
+    A : ndarray
         Symmetric positive definite matrix
     
     Returns
     -------
-    L: ndarray
+    L : ndarray
         Sparse Cholesky factor
-    perm: ndarray
-        Permutation ordering recovered by AMD
-    """
+    perm : ndarray of shape (n_features,)
+        Topological ordering
+    '''
     p = len(A)
     csc = scipy.sparse.csc_matrix(A)
     factor = sksparse.cholmod.cholesky(csc, ordering_method='amd')
     L = factor.L().toarray()
     perm = np.argsort(factor.P())
-        
-    return L, perm
     
+    return L, perm
 
-def frosty(X, alpha=0.99, b=200, diag=True, random_state=2023):
-    """
+def frosty(X, alpha=0.99, b=200, diag=True):
+    '''
     FROSTY algorithm for Bayesian network estimation
     
     Parameters
     ----------
-    X: ndarray of shape (n_samples, n_features)
+    X : ndarray of shape (n_samples, n_features)
         Data matrix
-    alpha: float, default=0.99
+    alpha : float, default=0.99
         (1-alpha) confidence level for robust selection
-    b: int, default=200
+    b : int, default=200
         Number of bootstrap samples for robust selection
-    diag: bool, default=True
+    diag : bool, default=True
         Whether or not to include diagonal when compute RWP function
-    random_state: int, default=2023
-        Random state instance
     
     Returns
     -------
-    B: ndarray of shape (n_features, n_features)
+    B : ndarray of shape (n_features, n_features)
         Estimated Bayesian network
-    """
-    np.random.seed(random_state)
+    perm : ndarray of shape (n_features,)
+        Topological ordering
+    '''
     n, p = X.shape
     
     # RobSel
@@ -63,4 +61,4 @@ def frosty(X, alpha=0.99, b=200, diag=True, random_state=2023):
     L_orig = L[:,perm][perm]
     B = (np.diag(np.diag(L_orig)) - L_orig) @ np.diag(1 / np.diag(L_orig))
     
-    return B
+    return B, perm
