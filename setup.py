@@ -9,6 +9,8 @@ setup(
     url='https://github.com/joshuaybang/frosty',
     keywords='bayesian network structure learning',
     packages=['frosty'],
-    python_requires='>=3.6, <=3.9',
-    install_requires=['numpy', 'scipy', 'Cython', 'skggm', 'scikit-sparse', 'robust-selection', 'networkx'],
+    python_requires='>=3.6, <3.10',
+    install_requires=['numpy', 'scipy', 'Cython',
+                      'skggm @ git+https://github.com/skggm/skggm.git@develop#egg=skggm',
+                      'scikit-sparse', 'robust-selection', 'networkx'],
 )
