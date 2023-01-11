@@ -9,5 +9,6 @@ setup(
     url='https://github.com/joshuaybang/frosty',
     keywords='bayesian network structure learning',
     packages=['frosty'],
-    install_requires=['numpy', 'scipy', 'skggm', 'sksparse', 'robsel', 'networkx'],
+    python_requires='>=3.6, <=3.9',
+    install_requires=['numpy', 'scipy', 'Cython', 'skggm', 'scikit-sparse', 'robust-selection', 'networkx'],
 )
