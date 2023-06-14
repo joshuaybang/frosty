@@ -2,6 +2,8 @@
 
 Python Package for FROSTY by Joshua Bang and Sang-Yun Oh
 
+Joshua Bang, Sang-Yun Oh (2023). FROSTY: A High-dimensional Scale-free Bayesian Network Learning Method. Journal of Data Science. \[[JDS](https://jds-online.org/journal/JDS/article/1329/info)\]
+
 ## Installation
 
 Installation of `scikit-sparse` depends on `suite-sparse` library, which can be installed via:
@@ -13,9 +15,9 @@ brew install suite-sparse
 sudo apt-get install libsuitesparse-dev
 ```
 
-Then install FROSTY via:
+Then install FROSTY from PyPI:
 ```bash
-pip install -e .
+pip install frosty
 ```
 
 ## Example (scale-free graph, p=50, n=1000)
