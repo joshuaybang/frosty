@@ -11,6 +11,5 @@ setup(
     packages=['frosty'],
     python_requires='>=3.6, <3.10',
     install_requires=['numpy', 'scipy', 'Cython',
-                      'skggm @ git+https://github.com/skggm/skggm.git@develop#egg=skggm',
-                      'scikit-sparse', 'robust-selection', 'networkx'],
+                      'skggm', 'scikit-sparse', 'robust-selection', 'networkx'],
 )
