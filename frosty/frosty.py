@@ -4,7 +4,7 @@ from inverse_covariance import QuicGraphicalLasso
 import sksparse
 import robsel
 
-def amd(A):
+def AMD(A):
     '''
     Parameters
     ----------
@@ -26,7 +26,7 @@ def amd(A):
     
     return L, perm
 
-def frosty(X, alpha=0.99, b=200, diag=True):
+def FROSTY(X, alpha=0.99, b=200, diag=True):
     '''
     FROSTY algorithm for Bayesian network estimation
     
@@ -55,9 +55,9 @@ def frosty(X, alpha=0.99, b=200, diag=True):
     
     # graphical lasso
     quic = QuicGraphicalLasso(lam=lam).fit(X)
-    Omega = quic.precision_
+    Theta = quic.precision_
     
-    L, perm = amd(Omega)
+    L, perm = AMD(Theta)
     L_orig = L[:,perm][perm]
     B = (np.diag(np.diag(L_orig)) - L_orig) @ np.diag(1 / np.diag(L_orig))
     
