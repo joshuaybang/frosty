@@ -8,7 +8,7 @@ setup(
     version='0.0.2',
     description='Implementation of the FROSTY algorithm',
     long_description=long_description,
-    long_description_content_type='text/markdown'
+    long_description_content_type='text/markdown',
     author='Joshua Bang',
     author_email='joshuaybang@gmail.com',
     url='https://github.com/joshuaybang/frosty-dag',
